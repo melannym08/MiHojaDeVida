@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 type Props = {
@@ -9,17 +9,35 @@ type Props = {
   onPress: () => void;
 };
 
-export default function MiBoton({ textoBoton, nombreIcono, colorBoton, onPress }: Props) {
+const MiBoton = ({ textoBoton, nombreIcono, colorBoton, onPress }: Props) => {
   return (
-    <TouchableOpacity style={[estibotones.boton, { backgroundColor: colorBoton }]} onPress={onPress}>
-      <Ionicons name={nombreIcono} size={20} color="#fff" style={estibotones.icono} />
-      <Text style={estibotones.texto}>{textoBoton}</Text>
+    <TouchableOpacity
+      style={[styles.boton, { backgroundColor: colorBoton }]}
+      onPress={onPress}
+    >
+      <Ionicons name={nombreIcono} size={20} color="#fff" style={styles.icono} />
+      <Text style={styles.texto}>{textoBoton}</Text>
     </TouchableOpacity>
   );
-}
+};
 
-const estibotones = StyleSheet.create({
-  boton: { flexDirection: "row", alignItems: "center", justifyContent: "center", padding: 12, borderRadius: 8, marginVertical: 6 },
-  icono: { marginRight: 8 },
-  texto: { color: "#fff", fontWeight: "bold", fontSize: 16 },
+export default MiBoton;
+
+const styles = StyleSheet.create({
+  boton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 12,
+    borderRadius: 8,
+    marginVertical: 6,
+  },
+  icono: {
+    marginRight: 8,
+  },
+  texto: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "600",
+  },
 });
