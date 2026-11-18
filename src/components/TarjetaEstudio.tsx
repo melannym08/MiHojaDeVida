@@ -1,31 +1,44 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
-type Props = { titulo: string; institucion: string; anio: string; enCurso: boolean; };
+// 1. Definimos los tipos de las propiedades que va a recibir la tarjeta
+interface TarjetaEstudioProps {
+  titulo: string;
+  institucion: string;
+  anio: string;
+  enCurso: boolean;
+}
 
-const TarjetaEstudio = ({ titulo, institucion, anio, enCurso }: Props) => {
+// 2. Aplicamos la interfaz al componente
+export default function TarjetaEstudio({ titulo, institucion, anio, enCurso }: TarjetaEstudioProps) {
   return (
-    <View style={[estilos.tarjeta, enCurso ? estilos.enCurso : estilos.finalizado]}>
-      <Text style={estilos.titulo}>{titulo}</Text>
-      {enCurso && (
-        <View style={estilos.badgeContainer}>
-          <Text style={estilos.badgeText}>En Curso</Text>
-        </View>
-      )}
-      <Text style={estilos.subtitulo}>{institucion}</Text>
-      <Text style={estilos.anio}>{anio}</Text>
+    <View style={styles.card}>
+      <Text style={styles.titulo}>{titulo}</Text>
+      <Text>{institucion} ({anio})</Text>
+      {enCurso && <Text style={styles.enCurso}>En curso</Text>}
     </View>
   );
-};
-export default TarjetaEstudio;
+}
 
-const estilos = StyleSheet.create({
-  tarjeta: { padding: 16, borderRadius: 10, marginVertical: 8, borderWidth: 1 },
-  finalizado: { backgroundColor: "#ffffff", borderColor: "#ccc" },
-  enCurso: { backgroundColor: "#eef2ff", borderColor: "#6366f1" },
-  titulo: { fontSize: 16, fontWeight: "bold" },
-  subtitulo: { fontSize: 14, color: "#555", marginTop: 4 },
-  anio: { fontSize: 12, color: "#888", marginTop: 2 },
-  badgeContainer: { alignSelf: "flex-start", backgroundColor: "#7c3aed", paddingHorizontal: 8, paddingVertical: 2, borderRadius: 12, marginTop: 4 },
-  badgeText: { color: "#fff", fontWeight: "bold", fontSize: 11 },
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor: '#ffffff',
+    padding: 16,
+    borderRadius: 8,
+    marginBottom: 12,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  titulo: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#1e293b',
+  },
+  enCurso: {
+    color: '#0284c7',
+    fontWeight: '600',
+    marginTop: 4,
+  },
 });
